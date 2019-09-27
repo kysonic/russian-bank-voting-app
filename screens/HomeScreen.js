@@ -1,18 +1,17 @@
 import React from 'react';
 import {
   StyleSheet,
-  View
+  ScrollView,
 } from 'react-native';
 
-import { Button } from 'react-native-paper';
+import Todo from '../components/Todo';
+
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
-        Press me
-      </Button>
-    </View>
+      <ScrollView style={styles.container}>
+        <Todo />
+      </ScrollView>
   );
 }
 
@@ -22,8 +21,6 @@ HomeScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    padding: 20
   }
 });
