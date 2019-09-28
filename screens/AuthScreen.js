@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { View, StyleSheet, KeyboardAvoidingView, ScrollView, Text } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, StyleSheet, KeyboardAvoidingView, ScrollView, Text, AsyncStorage} from 'react-native';
 import { Header } from 'react-navigation-stack';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -8,6 +8,7 @@ import AppHeader from '../components/AppHeader';
 import Onboarding from '../components/Onboarding';
 import Link from '../components/Link';
 import PhoneForm  from '../components/PhoneForm';
+import {navigateWithoutHistory} from '../libs/navigation';
 
 const DELTA = 28;
 const PRIVACY_POLICY_LINK = 'https://ru.wikipedia.org/wiki/%D0%9F%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%BE%D0%B5_%D1%81%D0%BE%D0%B3%D0%BB%D0%B0%D1%88%D0%B5%D0%BD%D0%B8%D0%B5';
@@ -16,6 +17,12 @@ export default function AuthScreen(props) {
   const [phone, setPhone] = useState('');
   const [sms, setSms] = useState('');
   const [focus, setFocus] = useState(false);
+
+  useEffect(() => {
+    if (global.token) {
+      navigateWithoutHistory(props.navigation, 'Home');
+    }
+  }, []);
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset = {Header.HEIGHT + DELTA}>
@@ -30,6 +37,7 @@ export default function AuthScreen(props) {
                 setPhone={setPhone}
                 setFocus={setFocus}
                 setSms={setSms}
+                navigation={props.navigation}
             />
           </LinearGradient>
           <View style={styles.privacyPolicy}>
