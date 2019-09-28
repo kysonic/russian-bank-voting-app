@@ -6,7 +6,6 @@ import {
 
 import Todo from '../components/Todo';
 
-
 export default function HomeScreen() {
   return (
       <ScrollView style={styles.container}>
