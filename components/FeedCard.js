@@ -8,7 +8,6 @@ import PollBadge from "./PollBadge";
 // TODO: gradient fixMe
 const styles = StyleSheet.create({
   card: {
-    backgroundImage: 'linear-gradient(180deg, rgba(36,34,46,0.00) 0%, #24222E 100%)',
     marginVertical: 8,
     marginHorizontal: 8,
   },
