@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Provider as PaperProvider } from 'react-native-paper';
+import { AsyncStorage } from 'react-native';
 
 import AppNavigator from './navigation/AppNavigator';
 
@@ -46,6 +47,10 @@ async function loadResourcesAsync() {
       ...Ionicons.font,
       'Arial': require('./assets/fonts/Arial.ttf')
     }),
+    (async () => {
+      //await AsyncStorage.setItem('token', ''); Drop token
+      global.token = await AsyncStorage.getItem('token');
+    })()
   ]);
 }
 

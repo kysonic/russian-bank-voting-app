@@ -5,6 +5,8 @@ import Config from "../constants/Config";
 import {DefaultTheme, TextInput, ActivityIndicator} from "react-native-paper";
 import {TextInputMask} from "react-native-masked-text";
 import axios from 'axios';
+import { AsyncStorage } from 'react-native';
+import {navigateWithoutHistory} from '../libs/navigation';
 
 const theme = {
     ...DefaultTheme,
@@ -22,7 +24,7 @@ const theme = {
 
 const smsInputRef = createRef();
 
-export default function PhoneForm ({focus, phone, sms, setPhone, setFocus, setSms}) {
+export default function PhoneForm ({focus, phone, sms, setPhone, setFocus, setSms, navigation}) {
     const [phoneFilled, setPhoneFilled] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -62,7 +64,10 @@ export default function PhoneForm ({focus, phone, sms, setPhone, setFocus, setSm
             setLoading(true);
             try {
                 const response = await axios.post(`${Config.apiURL}/verify`, {phone, code: sms});
-                console.log(response);
+                if (response.data && response.data.phone === phone) {
+                    await AsyncStorage.setItem('token', response.data.token);
+                    navigateWithoutHistory(navigation, 'Home');
+                }
                 setLoading(false);
             } catch (err) {
                 console.error(err);
