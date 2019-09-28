@@ -5,7 +5,7 @@ import Colors from '../constants/Colors';
 
 const defaultStyles = {
     color: Colors.link,
-    textDecoration: 'underline'
+    textDecorationLine: 'underline'
 };
 
 export default function Link({href, children, style}) {
