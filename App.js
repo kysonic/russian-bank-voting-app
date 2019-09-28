@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import AppNavigator from './navigation/AppNavigator';
 
@@ -16,11 +17,15 @@ const customizedTheme = {
   }
 };
 
+
+
 export default function Main(props) {
   return (
+    <SafeAreaProvider>
       <PaperProvider theme={customizedTheme}>
         <App {...props} />
       </PaperProvider>
+    </SafeAreaProvider>
   );
 }
 

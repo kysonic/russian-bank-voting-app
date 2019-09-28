@@ -42,7 +42,7 @@ const getIconByType = (props) => {
     case 'poll': {
       return (
         <View style={styles.badge}>
-          <Text style={{ color: firmBlue, fontSize: 10}} >0/{steps}</Text>
+          <Text style={{ color: firmBlue, fontSize: 14, fontWeight: '700'}} >0/{steps}</Text>
         </View>
       )
     }
