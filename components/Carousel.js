@@ -96,7 +96,7 @@ const Carousel = (props) => {
 
   if (!carouselVisible) return null;
   return (
-    <ImageBackground source={require('../assets/images/blue_gradient_home.png')}>
+    <ImageBackground style={{ width }} source={require('../assets/images/blue_gradient_home.png')}>
       <View style={styles.container}>
         <View style={closeIconStyles}>
           <Feather onPress={hideCarousel} name="x" size={24} color="#fff"/>
