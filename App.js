@@ -4,16 +4,29 @@ import * as Font from 'expo-font';
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AsyncStorage } from 'react-native';
 
 import AppNavigator from './navigation/AppNavigator';
 
+const customizedTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    firmBlue: '#0088bb',
+  }
+};
+
+
+
 export default function Main(props) {
   return (
-      <PaperProvider>
+    <SafeAreaProvider>
+      <PaperProvider theme={customizedTheme}>
         <App {...props} />
       </PaperProvider>
+    </SafeAreaProvider>
   );
 }
 
@@ -48,7 +61,7 @@ async function loadResourcesAsync() {
       'Arial': require('./assets/fonts/Arial.ttf')
     }),
     (async () => {
-      //await AsyncStorage.setItem('token', ''); Drop token
+      //await AsyncStorage.setItem('token', ''); // Drop token
       global.token = await AsyncStorage.getItem('token');
     })()
   ]);
