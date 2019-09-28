@@ -16,7 +16,7 @@ const list = [
     _id: 2,
     title: 'Увеличение золотовалютных резервов',
     content: 'Было внесено предложение об увеличении золото-валютного резерва в связи с потенциальной рецессией мирового рынка',
-    type: 'poll',
+    type: 'vote',
     src: 'url',
     steps: 5,
   },
@@ -24,16 +24,16 @@ const list = [
     _id: 3,
     title: 'Увеличение золотовалютных резервов',
     content: 'Было внесено предложение об увеличении золото-валютного резерва в связи с потенциальной рецессией мирового рынка',
-    type: 'poll',
+    type: 'extended',
     src: 'url',
     steps: 5,
   }
 ];
 
 const FeedList = () => (
-  <View>
+  <View style={{flex: 1}}>
     <FlatList
-      data={list}
+      data={list.map(item => { item.key = String(item._id); return item })}
       renderItem={({item}) => <FeedCard {...item}/>}
     />
   </View>

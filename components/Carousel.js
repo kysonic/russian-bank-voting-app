@@ -49,10 +49,6 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
   },
-  title: {
-    color: '#fff',
-    paddingHorizontal: 30,
-  },
   subtitle: {
     color: '#fff',
   },
@@ -114,7 +110,7 @@ const Carousel = (props) => {
                 <View style={styles.row}>
                   <PollBadge type={item.type} steps={item.steps} />
                   <View style={{flex: 1}}>
-                    <Title style={{ color: colors.surface}} styles={styles.title}>
+                    <Title style={{ color: colors.surface}}>
                       {item.title}
                     </Title>
                     <Subheading style={{ color: colors.surface}}>{item.subtitle}</Subheading>

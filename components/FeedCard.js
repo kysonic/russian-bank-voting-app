@@ -1,11 +1,10 @@
 import React from 'react';
 import {Card, Title, withTheme} from 'react-native-paper';
 import {
-  View, StyleSheet,
+  View, StyleSheet
 } from 'react-native';
 import PollBadge from "./PollBadge";
 
-// TODO: gradient fixMe
 const styles = StyleSheet.create({
   card: {
     marginVertical: 8,
@@ -17,28 +16,16 @@ const styles = StyleSheet.create({
   },
   info: {
     flexDirection: 'row',
-    alignItems: 'center',
     alignContent: 'center',
   },
-  title: {
-    flex: 1,
-    flexShrink: 1,
-  }
 });
 
 const Info = withTheme((props) => {
   const { theme: { colors }} = props;
-  const titleStyles = {
-    ...styles.title,
-    color: colors.surface
-  };
-
   return (
     <View style={styles.info}>
       <PollBadge {...props} />
-      <View style={{flex: 1}}>
-        <Title style={titleStyles}>{props.title}</Title>
-      </View>
+      <Title style={{color: colors.surface}}>{props.title}</Title>
     </View>
   )
 });
