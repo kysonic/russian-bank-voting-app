@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  View, StyleSheet, Dimensions,
+  View, StyleSheet, Dimensions, ImageBackground
 } from 'react-native';
 
 import SideSwipe from 'react-native-sideswipe'
@@ -10,7 +10,7 @@ import { Feather } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 const data = [{
-  title: 'Выбираем новый знак рубля!',
+  title: 'Новый знак рубля!',
   subtitle: 'Истекает сегодня!',
   description: `Science has not yet mastered prophecy. We predict too much for the
                 next year and yet far too little for the next 10. I know
@@ -35,10 +35,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 30,
     paddingVertical: 10,
-    backgroundImage: 'linear-gradient(to bottom, #0088bb, #00bbee)',
   },
   itemContainer: {
-    paddingHorizontal: 30,
+    paddingLeft: 30,
+    paddingRight: 40,
     paddingBottom: 15,
   },
   carousel: {
@@ -96,43 +96,45 @@ const Carousel = (props) => {
 
   if (!carouselVisible) return null;
   return (
-    <View style={styles.container}>
-      <View style={closeIconStyles}>
-        <Feather onPress={hideCarousel} name="x" size={24} color="#fff"/>
-      </View>
-      <SideSwipe
-        data={data}
-        style={styles.carousel}
-        itemWidth={width}
-        threshold={120}
-        contentOffset={0}
-        index={currentSlide}
-        renderItem={({ item }) => (
-          <View style={{ width }}>
-            <View style={styles.itemContainer}>
-              <View style={styles.row}>
-                <PollBadge type={item.type} steps={item.steps} />
-                <View>
-                  <Title style={{ color: colors.surface}} styles={styles.title}>
-                    {item.title}
-                  </Title>
-                  <Subheading style={{ color: colors.surface}}>{item.subtitle}</Subheading>
+    <ImageBackground source={require('../assets/images/blue_gradient_home.png')}>
+      <View style={styles.container}>
+        <View style={closeIconStyles}>
+          <Feather onPress={hideCarousel} name="x" size={24} color="#fff"/>
+        </View>
+        <SideSwipe
+          data={data}
+          style={styles.carousel}
+          itemWidth={width}
+          threshold={120}
+          contentOffset={0}
+          index={currentSlide}
+          renderItem={({ item }) => (
+            <View style={{ width }}>
+              <View style={styles.itemContainer}>
+                <View style={styles.row}>
+                  <PollBadge type={item.type} steps={item.steps} />
+                  <View style={{flex: 1}}>
+                    <Title style={{ color: colors.surface}} styles={styles.title}>
+                      {item.title}
+                    </Title>
+                    <Subheading style={{ color: colors.surface}}>{item.subtitle}</Subheading>
+                  </View>
+                </View>
+                <View style={styles.row}>
+                  <Paragraph style={styles.paragraph}>
+                    {item.description.replace(/\s+/g, ' ')}
+                  </Paragraph>
                 </View>
               </View>
-              <View style={styles.row}>
-                <Paragraph style={styles.paragraph}>
-                  {item.description.replace(/\s+/g, ' ')}
-                </Paragraph>
-              </View>
             </View>
-          </View>
-        )}
-    />
-      <View style={controlsStyles}>
-        <Feather onPress={onSlideLeft} name="chevron-left" size={24} color="#fff"/>
-        <Feather onPress={onSlideRight} name="chevron-right" size={24} color="#fff"/>
+          )}
+        />
+        <View style={controlsStyles}>
+          <Feather onPress={onSlideLeft} name="chevron-left" size={24} color="#fff"/>
+          <Feather onPress={onSlideRight} name="chevron-right" size={24} color="#fff"/>
+        </View>
       </View>
-    </View>
+    </ImageBackground>
   )
 };
 
