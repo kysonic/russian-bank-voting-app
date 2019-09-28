@@ -7,7 +7,7 @@ import PollBadge from "./PollBadge";
 
 const styles = StyleSheet.create({
   card: {
-    marginVertical: 8,
+    marginTop: 8,
     marginHorizontal: 8,
   },
   infoWrapper: {
