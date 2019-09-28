@@ -4,13 +4,21 @@ import * as Font from 'expo-font';
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import AppNavigator from './navigation/AppNavigator';
 
+const customizedTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    firmBlue: '#0088bb',
+  }
+};
+
 export default function Main(props) {
   return (
-      <PaperProvider>
+      <PaperProvider theme={customizedTheme}>
         <App {...props} />
       </PaperProvider>
   );
