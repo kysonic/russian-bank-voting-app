@@ -22,12 +22,13 @@ export default function AuthScreen(props) {
     if (global.token) {
       navigateWithoutHistory(props.navigation, 'Home');
     }
+    return () => {};
   }, []);
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset = {Header.HEIGHT + DELTA}>
       <ScrollView contentContainerStyle={styles.scroller}>
-        <Onboarding text="Будущее сегодня" />
+        <Onboarding />
         <View style={[{flex: 1}, focus ? {position: 'absolute', bottom: -70 , width: '100%'} : {}]}>
           <LinearGradient style={styles.form} colors={focus ? ['#0088bb', '#00bbee'] : ['#fff', '#fff']} >
             <PhoneForm
