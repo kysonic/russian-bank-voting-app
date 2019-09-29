@@ -7,6 +7,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AsyncStorage } from 'react-native';
+import ShareModal from "./components/ShareModal";
+
+export const ModalContext = React.createContext({
+  visible: false,
+  toggleVisibility: () => {}
+});
 
 import AppNavigator from './navigation/AppNavigator';
 
@@ -24,7 +30,9 @@ export default function Main(props) {
   return (
     <SafeAreaProvider>
       <PaperProvider theme={customizedTheme}>
-        <App {...props} />
+        <ModalContext.Provider>
+          <App {...props} />
+        </ModalContext.Provider>
       </PaperProvider>
     </SafeAreaProvider>
   );
