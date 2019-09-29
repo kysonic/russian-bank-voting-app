@@ -38,19 +38,19 @@ const getIconByType = (props) => {
         </View>
       )
     }
-    /* опрос - много вопросов */
-    case 'poll': {
-      return (
-        <View style={styles.badge}>
-          <Text style={{ color: firmBlue, fontSize: 14, fontWeight: '700'}} >0/{steps}</Text>
-        </View>
-      )
-    }
     /* Развернутый вопрос */
     case 'extended': {
       return (
         <View style={styles.badge}>
           <Feather name="type" size={24} color={firmBlue} />
+        </View>
+      )
+    }
+    /* опрос - много вопросов */
+    default: {
+      return (
+        <View style={styles.badge}>
+          <Text style={{ color: firmBlue, fontSize: 14, fontWeight: '700'}} >0/{steps}</Text>
         </View>
       )
     }

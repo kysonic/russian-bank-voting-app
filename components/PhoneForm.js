@@ -7,20 +7,7 @@ import {TextInputMask} from "react-native-masked-text";
 import axios from 'axios';
 import { AsyncStorage } from 'react-native';
 import {navigateWithoutHistory} from '../libs/navigation';
-
-const theme = {
-    ...DefaultTheme,
-    colors: {
-        ...DefaultTheme.colors,
-        placeholder: Colors.gray,
-        activeColor: Colors.white,
-        primary: Colors.white,
-        text: Colors.white,
-        input: {
-            textAlign: 'center'
-        }
-    }
-};
+import theme from '../constants/TextInputTheme';
 
 const smsInputRef = createRef();
 

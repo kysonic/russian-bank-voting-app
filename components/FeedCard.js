@@ -1,9 +1,10 @@
 import React from 'react';
 import {Card, Title, withTheme} from 'react-native-paper';
 import {
-  View, StyleSheet
+  View, StyleSheet,
 } from 'react-native';
 import PollBadge from "./PollBadge";
+import { withNavigation } from 'react-navigation';
 
 const styles = StyleSheet.create({
   card: {
@@ -16,6 +17,7 @@ const styles = StyleSheet.create({
   },
   info: {
     flexDirection: 'row',
+    alignItems: 'center',
     alignContent: 'center',
   },
 });
@@ -30,13 +32,21 @@ const Info = withTheme((props) => {
   )
 });
 
-const FeedCard = (props) => (
-  <Card style={styles.card}>
-    <Card.Cover source={require('../assets/images/Image.png')} />
-    <Card.Content style={styles.infoWrapper}>
-      <Info {...props}/>
-    </Card.Content>
-  </Card>
-);
+const FeedCard = (props) => {
+  const { navigation } = props;
 
-export default FeedCard;
+  const go2Details = () => {
+    navigation.navigate('Details', { props });
+  };
+
+  return (
+    <Card onPress={go2Details} style={styles.card}>
+      <Card.Cover source={require('../assets/images/Image.png')} />
+      <Card.Content style={styles.infoWrapper}>
+        <Info {...props}/>
+      </Card.Content>
+    </Card>
+  );
+};
+
+export default withNavigation(FeedCard);
