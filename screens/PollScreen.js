@@ -17,6 +17,7 @@ import PollForm from "../components/Poll";
 import PollBadge from "../components/PollBadge";
 import ShareModal from "../components/ShareModal";
 import colors from '../constants/Colors';
+import AppHeader from "../components/AppHeader";
 
 const { width, height } = Dimensions.get('window');
 
@@ -109,5 +110,18 @@ const PollScreen = (props) => {
     </ScrollView>
   )
 };
+
+PollScreen.navigationOptions = ({navigation}) => (
+    {
+        header: () => {
+            const item = navigation.getParam('props', {});
+            return (
+                <AppHeader title={item.title} back={true} navigation={navigation}>
+                    <Feather name="user" size={24} color={Colors.primary} onPress={() => navigation.navigate('Profile')}/>
+                </AppHeader>
+            )
+        }
+    }
+);
 
 export default PollScreen
