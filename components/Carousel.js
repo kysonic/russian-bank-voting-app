@@ -81,11 +81,11 @@ const Carousel = (props) => {
   const [carouselVisible, setCarouselVisible] = React.useState(true);
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const onSlideRight = () => {
-    setCurrentSlide(index => ++index)
+    setCurrentSlide(index => ++index > data.length - 1 ? 0 : index)
   };
 
   const onSlideLeft = () => {
-    setCurrentSlide(index => --index)
+    setCurrentSlide(index => --index < 0 ? data.length - 1 : index)
   };
 
   const hideCarousel = () => setCarouselVisible(false);
