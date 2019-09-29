@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   },
   info: {
     flexDirection: 'row',
+    alignItems: 'center',
     alignContent: 'center',
   },
 });
