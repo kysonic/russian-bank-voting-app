@@ -12,19 +12,17 @@ const { width } = Dimensions.get('window');
 const data = [{
   title: 'Новый знак рубля!',
   subtitle: 'Истекает сегодня!',
-  description: `Science has not yet mastered prophecy. We predict too much for the
-                next year and yet far too little for the next 10. I know
-                what you could say about a day in which you have seen four
-                beautiful sunsets.`,
+  description: `Прими участие в определении международного логотипа отечественной валюты! 
+                Это реальная возможность принять участие в историческом событии. За победу
+                борятся 4 дизайн-проекта. В настоящее время идет финальный этап голосования.`,
   type: 'vote',
 },
   {
     title: 'Изменение ключевой ставки!',
     subtitle: 'Истекает завтра!',
-    description: `Science has not yet mastered prophecy. We predict too much for the
-                next year and yet far too little for the next 10. I know
-                what you could say about a day in which you have seen four
-                beautiful sunsets.`,
+    description: `Обсуждение необхожимости изменения 
+                  ключевой ставки. В настоящее время в связи со сложной геополитической обстановкой 
+                  необходимос сохранить курс валюты стабильным, а инвестиционный климат - привлекательным`,
     type: 'poll',
     steps: 10
   }];
@@ -39,7 +37,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     paddingLeft: 30,
     paddingRight: 40,
-    paddingBottom: 15,
+    paddingBottom: 5,
   },
   carousel: {
     width,
