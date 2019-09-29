@@ -15,7 +15,7 @@ const MainNavigator = createStackNavigator(
         Details: PollScreen,
     },
     {
-        initialRouteName: 'Home'
+        initialRouteName: 'Auth'
     }
 );
 
