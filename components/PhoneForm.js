@@ -36,6 +36,8 @@ export default function PhoneForm ({focus, phone, sms, setPhone, setFocus, setSm
         if (phone.length === 18 && !phoneFilled) {
             loginRequest();
         }
+
+        return () => {};
     }, [phone.length]);
 
     useEffect(() => {
@@ -44,6 +46,7 @@ export default function PhoneForm ({focus, phone, sms, setPhone, setFocus, setSm
                 smsInputRef.current && smsInputRef.current.focus && smsInputRef.current.focus();
             });
         }
+        return () => {};
     }, [phoneFilled]);
 
     useEffect( () => {
@@ -66,6 +69,8 @@ export default function PhoneForm ({focus, phone, sms, setPhone, setFocus, setSm
         if (sms.length === 4 && phoneFilled) {
             verifyRequest();
         }
+
+        return () => {};
     }, [sms.length]);
 
     return (
