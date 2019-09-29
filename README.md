@@ -1,6 +1,6 @@
 # Russian Bank Voting App
 
-MVP of voting app build for "Digital breakdown" hackaton
+MVP of voting app build for "Digital breakdown" hackathon
 
 [Open in WEB](https://expo.io/appetize-simulator?url=https://expo.io/@kysonic/russia-bank-voting-app) (Tap to play -> Scroll Down -> Open project using Expo)
 
