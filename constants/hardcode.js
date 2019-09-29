@@ -1,3 +1,5 @@
+import generateDate from "../libs/generateDate";
+
 const list = [
   {
     _id: 1,
@@ -6,6 +8,7 @@ const list = [
     type: 'poll',
     src: 'url',
     steps: 3,
+    expired: generateDate(),
     q: [{
       type: 'rate',
       q: 'Оцените инициативу по пятибальной шкале, где 5 звезд - полность поддерживаю, 1 звезда - полностью несогласен'
@@ -26,7 +29,7 @@ const list = [
       type: 'radio',
       opts: [
         {label: 'Увеличение резерва создаст дефицит ликвидности валюты', val: 'one'},
-        {label: 'Увеличение резерва никак не влияет на ликвидность, равзве, что золотожобывающим компаниям это пойдет в плюс', val: 'two'},
+        {label: 'Увеличение резерва никак не влияет на ликвидность, равзве, что золотодобывающим компаниям это пойдет в плюс', val: 'two'},
         {label: 'Не вижу взаимосвязи', val: 'three'}
       ],
       q: 'Выберите ответ, наиболее точно описывающий данную ситуацию'
@@ -39,6 +42,7 @@ const list = [
     type: 'vote',
     src: 'url',
     steps: 5,
+    expired: generateDate(),
   },
   {
     _id: 3,
@@ -47,6 +51,7 @@ const list = [
     type: 'extended',
     src: 'url',
     steps: 5,
+    expired: generateDate(),
   }
 ];
 

@@ -11,13 +11,14 @@ import {
 } from 'react-native';
 import { Paragraph } from 'react-native-paper';
 import { Feather } from '@expo/vector-icons';
-import { ProgressBar, Colors, Button, Title } from 'react-native-paper';
+import { ProgressBar, Colors, Button, Title, Modal } from 'react-native-paper';
 
 import PollForm from "../components/Poll";
 import PollBadge from "../components/PollBadge";
+import ShareModal from "../components/ShareModal";
 import colors from '../constants/Colors';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   image: {
@@ -48,55 +49,63 @@ const styles = StyleSheet.create({
   }
 });
 
-const generateDate = () => {
-  const min = 1;
-  const max = 30;
-  const date = new Date(Date.now() + (Math.random() * max + min) * 24 *3600 * 1000);
-  const yyyy = date.getFullYear();
-  const mm = String(date.getMonth() + 1);
-  const dd = String(date.getDate());
-  return `${dd.length < 2 ? '0' + dd : dd}.${mm.length < 2 ? '0' + mm : mm}.${yyyy}`;
-};
-
 const PollScreen = (props) => {
   const [progress, setProgress] = React.useState(0);
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [done, setDone] = React.useState(false);
   const item = props.navigation.getParam('props', {});
   const { steps, type, q } = item;
+  const nextStep = () => {
+    if (progress === steps - 1) {
+      setDone(true);
+      setModalVisible(true);
+      setProgress(progress + 1);
+      return
+    }
+    if (progress === steps) return;
+    setProgress(progress + 1);
+  };
 
   return (
     <ScrollView>
-      <ImageBackground style={{...styles.image, width}} source={require('../assets/images/Image.png')} >
-        <View style={styles.info}>
-          <PollBadge {...item} />
-          <View style={{ marginLeft: 15 }}>
-            <Title style={{color: '#fff'}}>{item.title}</Title>
-            <Text style={{color: '#fff'}}>До {generateDate()}</Text>
+      <View style={{width, height}}>
+        <ImageBackground style={{...styles.image, width}} source={require('../assets/images/Image.png')} >
+          <View style={styles.info}>
+            <PollBadge {...item} />
+            <View style={{ marginLeft: 15 }}>
+              <Title style={{color: '#fff'}}>{item.title}</Title>
+              <Text style={{color: '#fff'}}>До {item.expired}</Text>
+            </View>
           </View>
-        </View>
-      </ImageBackground>
-      <View style={styles.container}>
-        <Paragraph style={styles.content}>{item.content}</Paragraph>
-        <View style={{ flexDirection: 'row', alignSelf: 'flex-start', marginVertical: 15 }}>
-          <Feather style={{ marginRight: 10 }} size={20} name="users" color={colors.primary} />
-          <Paragraph style={{color: colors.primary}}>Проголосовало 120 человек</Paragraph>
-        </View>
-        {type === 'poll' && steps && q &&
+        </ImageBackground>
+        <View style={styles.container}>
+          <Paragraph style={styles.content}>{item.content}</Paragraph>
+          <View style={{ flexDirection: 'row', alignSelf: 'flex-start', marginVertical: 15 }}>
+            <Feather style={{ marginRight: 10 }} size={20} name="users" color={colors.primary} />
+            <Paragraph style={{color: colors.primary}}>Проголосовало 120 человек</Paragraph>
+          </View>
+          {type === 'poll' && steps && q &&
           <>
             <Text>{progress}/{steps}</Text>
-            <ProgressBar style={{ width }} progress={progress / steps} color={Colors.red800} />
+            <ProgressBar style={{ width: width - 40 }} progress={progress / steps} color={Colors.red800} />
             <PollForm {...q[progress]} />
+            {!done &&
             <Button
               style={{ marginTop: 12 }}
               color={colors.red}
               mode="contained"
-              onPress={() => setProgress(i => ++i > q.length ? i - 1 : i)}
+              onPress={() => nextStep()}
             >
-              Далее
+              { steps - progress === 1 ? 'Готово' : 'Далее' }
             </Button>
+            }
+            {done && <Feather name="check-circle" size={60} color="#0088bb"/>}
           </>
-        }
-        <PollForm {...item} />
+          }
+          <PollForm {...item} />
+        </View>
       </View>
+      <ShareModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
     </ScrollView>
   )
 };
