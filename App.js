@@ -7,12 +7,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AsyncStorage } from 'react-native';
-import ShareModal from "./components/ShareModal";
-
-export const ModalContext = React.createContext({
-  visible: false,
-  toggleVisibility: () => {}
-});
 
 import AppNavigator from './navigation/AppNavigator';
 
@@ -30,9 +24,7 @@ export default function Main(props) {
   return (
     <SafeAreaProvider>
       <PaperProvider theme={customizedTheme}>
-        <ModalContext.Provider>
-          <App {...props} />
-        </ModalContext.Provider>
+        <App {...props} />
       </PaperProvider>
     </SafeAreaProvider>
   );
@@ -69,7 +61,7 @@ async function loadResourcesAsync() {
       'Arial': require('./assets/fonts/Arial.ttf')
     }),
     (async () => {
-      //await AsyncStorage.setItem('token', ''); // Drop token
+      // await AsyncStorage.setItem('token', ''); // Drop token
       global.token = await AsyncStorage.getItem('token');
     })()
   ]);

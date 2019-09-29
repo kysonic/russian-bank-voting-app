@@ -8,7 +8,7 @@ import theme from '../constants/TextInputTheme';
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   vote: {
-    width: 170,
+    width: 130,
     marginTop: 30,
     flexDirection: 'row',
     alignContent: 'center',
@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
 const Vote = () => {
   return (
     <View style={styles.vote}>
-      <Feather name="thumbs-up" size={48} color={colors.red}/>
-      <Feather name="thumbs-down" size={48} color={colors.red}/>
+      <Feather name="thumbs-up" size={36} color={colors.red}/>
+      <Feather name="thumbs-down" size={36} color={colors.red}/>
     </View>
   )
 };
@@ -73,7 +73,6 @@ const Check = (props) => {
 const Radio = (props) => {
   const [checked, setChecked] = React.useState(null);
   const handleInput = (value) => (e) => {
-    console.log('INPUT', value);
     setChecked(value);
   };
   const { opts } = props;

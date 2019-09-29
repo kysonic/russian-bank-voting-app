@@ -2,24 +2,18 @@ import React from 'react';
 import { DefaultTheme, Provider, Portal, Modal, List, Title } from 'react-native-paper';
 import {Dimensions, Text, View, Image} from 'react-native';
 
-const { width, height } = Dimensions.get('window');
-
 const socials = [{
   label: 'facebook',
-  _src: require('../assets/images/socials/ic_facebook.png'),
-  src: '../assets/images/socials/ic_facebook.png',
+  src: require('../assets/images/socials/ic_facebook.png'),
 }, {
   label: 'Одноклассники',
-  _src: require('../assets/images/socials/ic_odnokl.png'),
-  src: '../assets/images/socials/ic_odnokl.png',
+  src: require('../assets/images/socials/ic_odnokl.png'),
 }, {
   label: 'Twitter',
-  _src: require('../assets/images/socials/ic_twitter.png'),
-  src: '../assets/images/socials/ic_twitter.png',
+  src: require('../assets/images/socials/ic_twitter.png'),
 }, {
   label: 'Вконтакте',
-  _src: require('../assets/images/socials/ic_whatsapp.png'),
-  src: '../assets/images/socials/ic_whatsapp.png',
+  src: require('../assets/images/socials/ic_whatsapp.png'),
 }];
 
 const ShareModal = (props) => {
@@ -47,7 +41,7 @@ const ShareModal = (props) => {
                 <List.Item
                   key={index}
                   title={item.label}
-                  left={() => <Image style={{width: 40, height:40}} source={item._src}/>}
+                  left={() => <Image style={{width: 40, height:40}} source={item.src}/>}
                 />
               ))}
             </View>

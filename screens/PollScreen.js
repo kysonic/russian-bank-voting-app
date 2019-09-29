@@ -69,11 +69,11 @@ const PollScreen = (props) => {
   return (
     <ScrollView>
       <View style={{width, height}}>
-        <ImageBackground style={{...styles.image, width}} source={require('../assets/images/Image.png')} >
+        <ImageBackground style={{...styles.image, width}} source={item.src} >
           <View style={styles.info}>
             <PollBadge {...item} />
             <View style={{ marginLeft: 15 }}>
-              <Title style={{color: '#fff'}}>{item.title}</Title>
+              <Title style={{color: '#fff', lineHeight: 23}}>{item.title}</Title>
               <Text style={{color: '#fff'}}>До {item.expired}</Text>
             </View>
           </View>
