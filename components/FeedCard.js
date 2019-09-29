@@ -27,13 +27,13 @@ const Info = withTheme((props) => {
   return (
     <View style={styles.info}>
       <PollBadge {...props} />
-      <Title style={{color: colors.surface}}>{props.title}</Title>
+      <Title style={{color: colors.surface, lineHeight: 23}}>{props.title}</Title>
     </View>
   )
 });
 
 const FeedCard = (props) => {
-  const { navigation } = props;
+  const { navigation, src } = props;
 
   const go2Details = () => {
     navigation.navigate('Details', { props });
@@ -41,7 +41,7 @@ const FeedCard = (props) => {
 
   return (
     <Card onPress={go2Details} style={styles.card}>
-      <Card.Cover source={require('../assets/images/Image.png')} />
+      <Card.Cover source={src} />
       <Card.Content style={styles.infoWrapper}>
         <Info {...props}/>
       </Card.Content>
